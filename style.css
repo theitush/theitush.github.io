@@ -90,14 +90,6 @@ a { color: inherit; }
   letter-spacing: -0.025em;
 }
 
-.tagline {
-  margin: 0.9rem 0 0;
-  max-width: 46rem;
-  text-wrap: balance;
-  font-size: clamp(1.1875rem, 2.2vw, 1.4375rem);
-  line-height: 1.4;
-  color: var(--muted);
-}
 
 .elsewhere {
   display: flex;
