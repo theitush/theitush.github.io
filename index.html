@@ -164,5 +164,38 @@
       dlg.addEventListener('close', function () { vid.pause(); });
     })();
   </script>
+  <script>
+    // View counter (lead-machine#191): a beacon per view, demo play and card click.
+    // No cookies, no storage. If the beacon fails or is blocked, nothing else notices.
+    (function () {
+      var COUNTER = 'https://portfolio-counter.yajna-auth.workers.dev/e';
+      function send(data) {
+        try {
+          data.p = location.pathname;
+          if (navigator.sendBeacon) navigator.sendBeacon(COUNTER, JSON.stringify(data));
+        } catch (e) {}
+      }
+      try {
+        var q = new URLSearchParams(location.search);
+        send({ e: 'view', ref: (document.referrer || '').split(/[?#]/)[0], r: q.get('r') || q.get('utm_source') || '' });
+        // Drop the tag from the address bar, so a forwarded link doesn't carry someone else's.
+        var drop = [];
+        q.forEach(function (v, k) { if (k === 'r' || k.indexOf('utm_') === 0) drop.push(k); });
+        if (drop.length && history.replaceState) {
+          drop.forEach(function (k) { q.delete(k); });
+          var rest = q.toString();
+          history.replaceState(history.state, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+        }
+      } catch (e) {}
+      document.addEventListener('click', function (ev) {
+        try {
+          var a = ev.target.closest && ev.target.closest('a[href]');
+          if (!a) return;
+          if (a.hasAttribute('data-demo')) send({ e: 'play', t: a.href });
+          else if (a.classList.contains('work-link') || a.closest('.credit')) send({ e: 'out', t: a.href });
+        } catch (e) {}
+      }, true);
+    })();
+  </script>
 </body>
 </html>
