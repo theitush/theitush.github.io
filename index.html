@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Itamar Caspi | Scientific software for labs</title>
-  <meta name="description" content="A genomic mutation viewer, a weather history site, a tree of life, a manager for AI coding agents, a complex function explorer, a journaling app and an NGS pipeline.">
+  <meta name="description" content="A genomic mutation viewer, a PCR plate planner, a weather history site, a tree of life, a manager for AI coding agents, a complex function explorer, a journaling app and an NGS pipeline.">
   <link rel="canonical" href="https://theitush.github.io/">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f3f5f6" media="(prefers-color-scheme: light)">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://theitush.github.io/">
   <meta property="og:title" content="Itamar Caspi">
-  <meta property="og:description" content="A genomic mutation viewer, a weather history site, a tree of life, a manager for AI coding agents, a complex function explorer, a journaling app and an NGS pipeline.">
+  <meta property="og:description" content="A genomic mutation viewer, a PCR plate planner, a weather history site, a tree of life, a manager for AI coding agents, a complex function explorer, a journaling app and an NGS pipeline.">
   <meta property="og:image" content="https://theitush.github.io/media/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -38,7 +38,9 @@
   <main>
     <ul class="works">
       <li class="work">
-        <a class="work-link" href="media/genomic-mutation-viewer.mp4" data-demo>
+        <a class="work-link" href="media/genomic-mutation-viewer.mp4" data-demo
+           data-demo-title="Genomic Mutation Viewer" data-demo-poster="media/genomic-mutation-viewer.webp"
+           data-demo-label="Demo of the Genomic Mutation Viewer: EGFR L858R, then the EGFR E746_A750del deletion">
           <span class="plate plate-video">
             <img src="media/genomic-mutation-viewer.webp" width="960" height="600" loading="lazy" decoding="async"
                  alt="The Genomic Mutation Viewer showing the DNA around EGFR L858R. Each base is coloured by how variable it is in gnomAD, and a tooltip lists the variant frequencies at one highly variable position.">
@@ -46,6 +48,21 @@
           </span>
           <h2>Genomic Mutation Viewer</h2>
           <p class="blurb">Shows the DNA around well-known cancer mutations, coloured by how variable each base is across 9 gnomAD populations.</p>
+          <span class="dest dest-video">Watch the demo video</span>
+        </a>
+      </li>
+
+      <li class="work">
+        <a class="work-link" href="media/experiment-planner.mp4" data-demo
+           data-demo-title="Experiment Planner" data-demo-poster="media/experiment-planner.webp"
+           data-demo-label="Demo of the Experiment Planner: a B2M primer efficiency plate set up and exported as a PDF, then the saved GAPDH and ACTB plate opened again">
+          <span class="plate plate-video">
+            <img src="media/experiment-planner.webp" width="960" height="600" loading="lazy" decoding="async"
+                 alt="The Experiment Planner in dark mode with the plate for GAPDH and ACTB on cell lines. Beside the experiment's mix, reagent lots and protocol, 48 of its 96 wells are filled and coloured by sample: HeLa, HEK293 and A549 DNA extracts, a positive control and no-template controls.">
+            <span class="play" aria-hidden="true">Play demo</span>
+          </span>
+          <h2>Experiment Planner</h2>
+          <p class="blurb">Plans PCR plates from a company's own data, with experiments from Notion, samples and primers from the lab inventory, and each finished plate saved to OneDrive as a PDF.</p>
           <span class="dest dest-video">Watch the demo video</span>
         </a>
       </li>
@@ -131,25 +148,38 @@
 
   <dialog class="demo" id="demo" aria-labelledby="demo-title">
     <div class="demo-head">
-      <p class="demo-title" id="demo-title">Genomic Mutation Viewer</p>
+      <p class="demo-title" id="demo-title"></p>
       <form method="dialog"><button class="demo-close" aria-label="Close the video">×</button></form>
     </div>
-    <video controls autoplay muted playsinline preload="none" poster="media/genomic-mutation-viewer.webp" aria-label="Demo of the Genomic Mutation Viewer: EGFR L858R, then the EGFR E746_A750del deletion"></video>
-    <p class="demo-fallback" hidden>The video did not load here. <a href="media/genomic-mutation-viewer.mp4">Open the video file</a> instead.</p>
+    <video controls autoplay muted playsinline preload="none"></video>
+    <p class="demo-fallback" hidden>The video did not load here. <a>Open the video file</a> instead.</p>
   </dialog>
 
   <script>
     (function () {
       var dlg = document.getElementById('demo');
-      if (!dlg || typeof dlg.showModal !== 'function') return; // no <dialog>: the card stays a plain link to the MP4
+      if (!dlg || typeof dlg.showModal !== 'function') return; // no <dialog>: each card stays a plain link to its MP4
       var vid = dlg.querySelector('video');
+      var title = document.getElementById('demo-title');
       var fallback = dlg.querySelector('.demo-fallback');
+      var fileLink = fallback.querySelector('a');
       function showFallback() { vid.hidden = true; fallback.hidden = false; }
       vid.addEventListener('error', showFallback);
+      // Each card says what the dialog shows: its href is the MP4, data-demo-title, -poster and -label the rest.
       document.querySelectorAll('[data-demo]').forEach(function (link) {
         link.addEventListener('click', function (e) {
           e.preventDefault();
-          if (!vid.getAttribute('src')) vid.src = link.getAttribute('href');
+          var src = link.getAttribute('href');
+          title.textContent = link.getAttribute('data-demo-title') || '';
+          vid.setAttribute('aria-label', link.getAttribute('data-demo-label') || '');
+          fileLink.setAttribute('href', src);
+          if (vid.getAttribute('src') !== src) {
+            // Another video: load it from the start, and drop a fallback the last one may have shown.
+            vid.poster = link.getAttribute('data-demo-poster') || '';
+            vid.src = src;
+            vid.hidden = false;
+            fallback.hidden = true;
+          }
           dlg.showModal();
           if (vid.error) { showFallback(); return; }
           var p = vid.play();
