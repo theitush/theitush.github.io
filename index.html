@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Itamar Caspi | Scientific software for labs</title>
-  <meta name="description" content="Freelance data scientist. I build custom scientific software for labs. A genomic mutation viewer, a weather history site, a tree of life and a terminal for AI coding agents.">
+  <meta name="description" content="Freelance data scientist. I build custom scientific software for labs. A genomic mutation viewer, a weather history site, a tree of life and a manager for AI coding agents.">
   <link rel="canonical" href="https://theitush.github.io/">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f3f5f6" media="(prefers-color-scheme: light)">
@@ -17,7 +17,7 @@
   <meta property="og:image" content="https://theitush.github.io/media/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="The Genomic Mutation Viewer showing DNA around a cancer mutation, each base coloured by how variable it is.">
+  <meta property="og:image:alt" content="The Genomic Mutation Viewer showing the DNA around EGFR L858R, each base coloured by how variable it is.">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233b3f9e'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
@@ -40,7 +40,7 @@
         <a class="work-link" href="media/genomic-mutation-viewer.mp4" data-demo>
           <span class="plate plate-video">
             <img src="media/genomic-mutation-viewer.webp" width="960" height="600" loading="lazy" decoding="async"
-                 alt="The Genomic Mutation Viewer showing the DNA around KRAS G12D. Each base is coloured by how variable it is, and a tooltip lists the variant frequencies at one position.">
+                 alt="The Genomic Mutation Viewer showing the DNA around EGFR L858R. Each base is coloured by how variable it is in gnomAD, and a tooltip lists the variant frequencies at one highly variable position.">
             <span class="play" aria-hidden="true">Play demo</span>
           </span>
           <h2>Genomic Mutation Viewer</h2>
@@ -77,12 +77,13 @@
         <a class="work-link" href="https://github.com/theitush/giverny" target="_blank" rel="noopener">
           <span class="plate">
             <img src="media/giverny.webp" width="960" height="600" loading="lazy" decoding="async"
-                 alt="Giverny with project tabs grouped by category on the left, a Claude Code session running a task, and usage meters for three accounts.">
+                 alt="Giverny's management panel listing running, next up and done tasks with their time estimates, below a Claude Code manager session landing its workers' tasks.">
           </span>
-          <h2>Giverny</h2>
-          <p class="blurb">A native GPU terminal built around Claude Code, with persistent tabs in categories, live agent activity and usage meters.</p>
+          <h2>Giverny, manager fork</h2>
+          <p class="blurb">Adds a manager to the Giverny terminal. It runs Claude Code worker agents in parallel, with time estimates that learn from history and a shared RAM budget.</p>
           <span class="dest dest-out">github.com/theitush/giverny</span>
         </a>
+        <p class="credit">Fork of <a href="https://github.com/y0av/giverny" target="_blank" rel="noopener">y0av/giverny</a></p>
       </li>
     </ul>
   </main>
@@ -96,7 +97,7 @@
       <p class="demo-title" id="demo-title">Genomic Mutation Viewer</p>
       <form method="dialog"><button class="demo-close" aria-label="Close the video">×</button></form>
     </div>
-    <video controls autoplay muted playsinline preload="none" poster="media/genomic-mutation-viewer.webp"></video>
+    <video controls autoplay muted playsinline preload="none" poster="media/genomic-mutation-viewer.webp" aria-label="Demo of the Genomic Mutation Viewer: EGFR L858R, then the EGFR E746_A750del deletion"></video>
     <p class="demo-fallback" hidden>The video did not load here. <a href="media/genomic-mutation-viewer.mp4">Open the video file</a> instead.</p>
   </dialog>
 

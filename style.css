@@ -335,3 +335,17 @@ a.contact:hover { background: var(--accent); color: var(--mat); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* Credit for a fork, under its card: small and plain */
+.credit {
+  margin: 0.4rem 0 0;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.credit a { text-underline-offset: 0.2em; }
+.credit a:hover { color: var(--accent); }
+
+@media (max-width: 30rem) {
+  .play { font-size: 0.75rem; }
+}
