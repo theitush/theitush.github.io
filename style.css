@@ -1,0 +1,337 @@
+/* Newsreader by Production Type, SIL Open Font License 1.1 (fonts/Newsreader-OFL.txt). Self-hosted, latin subset. */
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("fonts/newsreader-latin-wght-normal.woff2") format("woff2-variations"),
+       url("fonts/newsreader-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* Slide glass, slate ink, one hematoxylin accent. */
+  --paper: #f3f5f6;
+  --mat: #ffffff;
+  --ink: #1a2330;
+  --muted: #56626e;
+  --rule: #d5dce1;
+  --accent: #3b3f9e;
+  --shadow: 0 1px 2px rgb(26 35 48 / 6%), 0 12px 32px -12px rgb(26 35 48 / 22%);
+
+  --serif: "Newsreader", "Iowan Old Style", "Charter", "Sitka Text", Cambria, Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --measure: 34rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181d;
+    --mat: #1d232a;
+    --ink: #e6e9ed;
+    --muted: #9aa5b1;
+    --rule: #2d3640;
+    --accent: #aab0f6;
+    --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 14px 36px -12px rgb(0 0 0 / 60%);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 72rem;
+  padding: 0 var(--gutter);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.5;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+[hidden] { display: none !important; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+  padding: clamp(2.75rem, 7vw, 4.75rem) 0 clamp(2rem, 4vw, 2.75rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+.masthead h1 {
+  margin: 0;
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  font-weight: 460;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.tagline {
+  margin: 0.9rem 0 0;
+  max-width: 46rem;
+  text-wrap: balance;
+  font-size: clamp(1.1875rem, 2.2vw, 1.4375rem);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.contact {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 0.55rem 1rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+a.contact:hover { background: var(--accent); color: var(--mat); }
+
+/* Placeholder until Ita gives the link. Remove .contact-todo with it. */
+.contact-todo {
+  color: #a3470f;
+  border-style: dashed;
+  background: rgb(255 170 60 / 12%);
+}
+
+/* ---------- Works ---------- */
+
+.works {
+  list-style: none;
+  margin: 0;
+  padding: clamp(2.25rem, 5vw, 3.25rem) 0 clamp(3rem, 8vw, 6rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(3rem, 7vw, 5rem) clamp(2rem, 4vw, 3.5rem);
+}
+
+@media (min-width: 46rem) {
+  .works { grid-template-columns: 1fr 1fr; }
+}
+
+.work-link {
+  display: block;
+  text-decoration: none;
+}
+
+/* The thumbnail sits in a white mat, like a mounted figure. */
+.plate {
+  position: relative;
+  display: block;
+  padding: clamp(0.5rem, 1.2vw, 0.75rem);
+  background: var(--mat);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.plate img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 2px;
+  background: var(--paper);
+}
+
+.work h2 {
+  margin: 1.4rem 0 0;
+  font-size: 1.625rem;
+  font-weight: 560;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.blurb {
+  margin: 0.45rem 0 0;
+  max-width: var(--measure);
+  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.dest {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  margin-top: 0.85rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 0.2s ease;
+}
+
+/* external: a small arrow out of a box; video: a small play triangle */
+.dest::after {
+  content: "";
+  width: 0.8em;
+  height: 0.8em;
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+.dest-out {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.5 3.5h-3v9h9v-3M9.5 2.5h4v4M13.5 2.5 7.5 8.5'/%3E%3C/svg%3E");
+}
+.dest-video {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 2.5v11l9.5-5.5z' fill='black'/%3E%3C/svg%3E");
+}
+.dest-video::after { order: -1; }
+
+/* Play badge on the viewer's thumbnail: in a corner, so it never hides the sequence */
+.play {
+  position: absolute;
+  left: clamp(1rem, 2.4vw, 1.5rem);
+  bottom: clamp(1rem, 2.4vw, 1.5rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 0.55em 1.05em 0.55em 0.85em;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  box-shadow: 0 4px 14px -4px rgb(20 22 70 / 60%);
+  transition: scale 0.25s ease;
+  transform-origin: left bottom;
+}
+.play::before {
+  content: "";
+  width: 0.75em;
+  height: 0.85em;
+  background: currentColor;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+@media (prefers-color-scheme: dark) {
+  .play { background: #4a4fc0; box-shadow: 0 4px 14px -4px rgb(0 0 0 / 70%); }
+}
+
+@media (hover: hover) {
+  .work-link:hover .plate {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--rule));
+  }
+  .work-link:hover .play { scale: 1.05; }
+  .work-link:hover .dest { text-decoration-color: currentColor; }
+}
+
+.work-link:focus-visible { outline-offset: 8px; }
+
+/* ---------- Footer ---------- */
+
+.colophon {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 0 2.5rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.colophon p { margin: 0; }
+
+/* ---------- Video dialog ---------- */
+
+.demo {
+  width: min(70rem, 100vw - 2 * var(--gutter));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--mat);
+  color: var(--ink);
+  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 55%);
+  overflow: hidden;
+}
+
+.demo::backdrop {
+  background: rgb(16 20 28 / 72%);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.demo[open] { animation: demo-in 0.2s ease-out; }
+@keyframes demo-in { from { opacity: 0; transform: translateY(8px) scale(0.99); } }
+
+.demo-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.75rem 0.6rem 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.demo-title {
+  margin: 0;
+  font-size: 1.1875rem;
+  font-weight: 560;
+}
+
+.demo form { margin: 0; }
+
+.demo-close {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font: 400 1.75rem/1 var(--sans);
+  cursor: pointer;
+}
+.demo-close:hover { background: var(--paper); color: var(--ink); }
+
+.demo video {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 6rem);
+  background: #000;
+}
+
+.demo-fallback {
+  margin: 0;
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  color: var(--muted);
+}
+.demo-fallback a { color: var(--accent); font-weight: 560; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

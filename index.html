@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Itamar Caspi | Scientific software for labs</title>
+  <meta name="description" content="Freelance data scientist. I build custom scientific software for labs. A genomic mutation viewer, a weather history site, a tree of life and a terminal for AI coding agents.">
+  <link rel="canonical" href="https://theitush.github.io/">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f3f5f6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14181d" media="(prefers-color-scheme: dark)">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://theitush.github.io/">
+  <meta property="og:title" content="Itamar Caspi">
+  <meta property="og:description" content="Freelance data scientist. I build custom scientific software for labs.">
+  <meta property="og:image" content="https://theitush.github.io/media/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Genomic Mutation Viewer showing DNA around a cancer mutation, each base coloured by how variable it is.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233b3f9e'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-text">
+      <h1>Itamar Caspi</h1>
+      <p class="tagline">Freelance data scientist. I build custom scientific software for labs.</p>
+    </div>
+    <!-- CONTACT LINK: Ita to supply (email, LinkedIn or a booking link). Replace this span with an <a class="contact" href="...">. -->
+    <span class="contact contact-todo">Contact link goes here</span>
+  </header>
+
+  <main>
+    <ul class="works">
+      <li class="work">
+        <a class="work-link" href="media/genomic-mutation-viewer.mp4" data-demo>
+          <span class="plate plate-video">
+            <img src="media/genomic-mutation-viewer.webp" width="960" height="600" loading="lazy" decoding="async"
+                 alt="The Genomic Mutation Viewer showing the DNA around KRAS G12D. Each base is coloured by how variable it is, and a tooltip lists the variant frequencies at one position.">
+            <span class="play" aria-hidden="true">Play demo</span>
+          </span>
+          <h2>Genomic Mutation Viewer</h2>
+          <p class="blurb">Shows the DNA around well-known cancer mutations, coloured by how variable each base is across 9 gnomAD populations.</p>
+          <span class="dest dest-video">Watch the demo video</span>
+        </a>
+      </li>
+
+      <li class="work">
+        <a class="work-link" href="https://www.weatherbaseline.com" target="_blank" rel="noopener">
+          <span class="plate">
+            <img src="media/weatherbaseline.webp" width="960" height="600" loading="lazy" decoding="async"
+                 alt="WeatherBaseline rating London's 36.3 °C on 19 July 2022 as Legendary, the hottest on record for that date, with the history of that day since 1950 below.">
+          </span>
+          <h2>WeatherBaseline</h2>
+          <p class="blurb">How unusual a day's weather really is, ranked against every version of that day since 1950 in ERA5 reanalysis data.</p>
+          <span class="dest dest-out">weatherbaseline.com</span>
+        </a>
+      </li>
+
+      <li class="work">
+        <a class="work-link" href="https://theitush.github.io/ToLaD/" target="_blank" rel="noopener">
+          <span class="plate">
+            <img src="media/tolad.webp" width="960" height="600" loading="lazy" decoding="async"
+                 alt="ToLaD showing the mammal tree from 195 million years ago to now, each branch as wide as the number of individuals in it.">
+          </span>
+          <h2>ToLaD</h2>
+          <p class="blurb">A zoomable tree of life where every leaf is an individual organism, alive or dead.</p>
+          <span class="dest dest-out">theitush.github.io/ToLaD</span>
+        </a>
+      </li>
+
+      <li class="work">
+        <a class="work-link" href="https://github.com/theitush/giverny" target="_blank" rel="noopener">
+          <span class="plate">
+            <img src="media/giverny.webp" width="960" height="600" loading="lazy" decoding="async"
+                 alt="Giverny with project tabs grouped by category on the left, a Claude Code session running a task, and usage meters for three accounts.">
+          </span>
+          <h2>Giverny</h2>
+          <p class="blurb">A native GPU terminal built around Claude Code, with persistent tabs in categories, live agent activity and usage meters.</p>
+          <span class="dest dest-out">github.com/theitush/giverny</span>
+        </a>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="colophon">
+    <p>© 2026 Itamar Caspi</p>
+  </footer>
+
+  <dialog class="demo" id="demo" aria-labelledby="demo-title">
+    <div class="demo-head">
+      <p class="demo-title" id="demo-title">Genomic Mutation Viewer</p>
+      <form method="dialog"><button class="demo-close" aria-label="Close the video">×</button></form>
+    </div>
+    <video controls autoplay muted playsinline preload="none" poster="media/genomic-mutation-viewer.webp"></video>
+    <p class="demo-fallback" hidden>The video did not load here. <a href="media/genomic-mutation-viewer.mp4">Open the video file</a> instead.</p>
+  </dialog>
+
+  <script>
+    (function () {
+      var dlg = document.getElementById('demo');
+      if (!dlg || typeof dlg.showModal !== 'function') return; // no <dialog>: the card stays a plain link to the MP4
+      var vid = dlg.querySelector('video');
+      var fallback = dlg.querySelector('.demo-fallback');
+      function showFallback() { vid.hidden = true; fallback.hidden = false; }
+      vid.addEventListener('error', showFallback);
+      document.querySelectorAll('[data-demo]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (!vid.getAttribute('src')) vid.src = link.getAttribute('href');
+          dlg.showModal();
+          if (vid.error) { showFallback(); return; }
+          var p = vid.play();
+          if (p && p.catch) p.catch(function () {});
+        });
+      });
+      dlg.addEventListener('click', function (e) {
+        if (e.target !== dlg) return; // a click on the backdrop lands on the dialog itself, outside its box
+        var r = dlg.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dlg.close();
+      });
+      dlg.addEventListener('close', function () { vid.pause(); });
+    })();
+  </script>
+</body>
+</html>
