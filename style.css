@@ -99,25 +99,23 @@ a { color: inherit; }
   color: var(--muted);
 }
 
-.contact {
+.elsewhere {
+  display: flex;
+  gap: 1.25rem;
   font-family: var(--sans);
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--accent);
+}
+.elsewhere a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
   text-decoration: none;
-  padding: 0.55rem 1rem;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  white-space: nowrap;
+  padding: 0.35rem 0;
 }
-a.contact:hover { background: var(--accent); color: var(--mat); }
-
-/* Placeholder until Ita gives the link. Remove .contact-todo with it. */
-.contact-todo {
-  color: #a3470f;
-  border-style: dashed;
-  background: rgb(255 170 60 / 12%);
-}
+.elsewhere a:hover { color: var(--accent); }
+.elsewhere svg { flex: none; }
 
 /* ---------- Works ---------- */
 
